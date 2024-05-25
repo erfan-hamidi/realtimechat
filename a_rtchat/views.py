@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect 
 from django.contrib.auth.decorators import login_required
 from .models import *
-from .forms import ChatmessageCreateForm
+from .forms import *
 # Create your views here.
 
 @login_required
@@ -64,3 +64,12 @@ def get_or_create_chatroom(request, username):
         chatroom.members.add(other_user, request.user)
         
     return redirect('chatroom', chatroom.group_name)
+
+
+@login_required
+def create_groupchat(req):
+    form = NewGroupForm()
+    context ={
+        'form': form
+    }
+    return render(req, 'a_rtchat/create_groupchat.html', context=context)
