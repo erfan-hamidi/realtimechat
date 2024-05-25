@@ -19,6 +19,10 @@ def chat_view(req, chatroom_name = 'pub-chat'):
             if member != req.user:
                 other_user = member
                 break
+
+    if chat_group.groupchat_name:
+        if req.user not in chat_group.members.all():
+            chat_group.members.add(req.user)
     if req.htmx:
         form = ChatmessageCreateForm(req.POST)
         if form.is_valid:
