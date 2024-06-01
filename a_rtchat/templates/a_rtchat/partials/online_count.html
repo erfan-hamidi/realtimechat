@@ -34,3 +34,12 @@
     </li>
     {% endfor %}
 </ul>
+
+
+{% for user in users %}
+    {% if user in chat_group.users_online.all %}
+    <div id="user-{{ user.id }}" class="rounded-full bg-green-500 p-1.5 border-2 border-gray-800 absolute -bottom-1 -right-1"></div>
+    {% else %}
+    <div id="user-{{ user.id }}" class="rounded-full bg-gray-500 p-1.5 border-2 border-gray-800 absolute -bottom-1 -right-1"></div>
+    {% endif %}
+{% endfor %}
